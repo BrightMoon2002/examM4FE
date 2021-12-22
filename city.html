@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Thành Phố</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="city.js"></script>
+    <script src="validation.js"></script>
+    <link rel="stylesheet" href="validate.css">
+</head>
+<body>
+<div class="controller">
+    <div class="card">
+        <div class="card-header">
+            <button class="btn btn-primary" onclick="showCreate()">Create</button>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Country</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody id="showAll">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="formEdit" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModal">Add Department</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            </div>
+            <!-- body -->
+            <div class="modal-body">
+                <div class="modal-container">
+                    <form id="form" enctype="multipart/form-data" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control"  required id="namecity1" name="namecity1" min="3" max="50">
+                            <span id="error" class="error" aria-live="polite"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <input type="text" class="form-control"  required id="description1" name="gdp1" min="2" max="50">
+                            <span id="error1" class="error" aria-live="polite"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">GDP</label>
+                            <input type="number" class="form-control"  required id="gdp1" name="gdp1">
+                            <span id="error2" class="error" aria-live="polite"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Area</label>
+                            <input type="text" class="form-control"  required id="area1" name="area1">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Population</label>
+                            <input type="number" class="form-control"  required id="population1" name="population1">
+                            <span id="error3" class="error" aria-live="polite"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">National</label>
+                            <select name="" id="national1">
+
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="hidden" class="form-control" id="idcity1">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button onclick="updateCity()" class="btn btn-secondary">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="formCreate" class="modal" tabindex="-1" role="dialog">
+    <form id="formNew" novalidate>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleModal1">Add Department</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <div class="modal-container">
+                        <form id="form1" novalidate>
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control"  required id="namecity" name="namecity" min="2" max="500">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-control"  required pattern="[a-zA-Z0-9]+" id="description" name="description" min="2" max="500">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">GDP</label>
+                                <input type="number" class="form-control" id="gdp" required name="gdp">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Area</label>
+                                <input type="text" class="form-control" id="area" required name="are">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Population</label>
+                                <input type="number" class="form-control"  required id="population" name="population">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">National</label>
+                                <select name="" id="national">
+
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button onclick="createCity()" class="btn btn-secondary">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<div id="formDetails" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModal2">Add Department</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            </div>
+            <!-- body -->
+            <div class="modal-body">
+                <div class="modal-container">
+                    <div class="mb-3" style="margin-left: 50%">
+                        <button onclick="closeDetailForm()" class="btn btn-secondary">Xem danh sách thành phố</button>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" id="namecity2">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Nation</label>
+                        <input type="text" class="form-control" id="national2">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Area</label>
+                        <input type="text" class="form-control" id="area2">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">population</label>
+                        <input type="text" class="form-control" id="population2">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">GDP</label>
+                        <input type="text" class="form-control" id="gdp2">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">description</label>
+                        <input type="text" class="form-control" id="description2">
+                    </div>
+                    <div style="display: flex">
+
+                        <div class="mb-3" id="btn_delete" style="margin-left: 10px">
+
+                        </div>
+                        <div class="mb-3" id="btn_edit" style="margin-left: 10px">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="formDelete" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModal3">DeleteCity</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            </div>
+            <!-- body -->
+            <div class="modal-body">
+                <div class="modal-container">
+                    <h3>Bạn có chắc chắn muốn xóa thành phố</h3>
+                    <div style="display: flex">
+                        <div class="mb-3" id="btn_delete_yes" style="margin-left: 10px">
+
+                        </div>
+                        <div class="mb-3" id="btn_home" style="margin-left: 10px">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
