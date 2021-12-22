@@ -110,10 +110,8 @@ function updateCity(){
         url: `http://localhost:8080/api/cities/` + idcity,
         data: JSON.stringify(data),
         success: function (data) {
-            if (d() == true) {
                 showList();
                 $('#formEdit').modal('hide');
-            }
         }
     })
     event.preventDefault();
@@ -168,11 +166,8 @@ function createCity(){
         url: `http://localhost:8080/api/cities`,
         data: JSON.stringify(data),
         success: function (data) {
-            if (c() == true) {
                 showList();
                 $('#formCreate').modal('hide');
-                reset();
-            }
         }
     })
     event.preventDefault();

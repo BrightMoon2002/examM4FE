@@ -51,12 +51,12 @@
                     <form id="form" enctype="multipart/form-data" novalidate>
                         <div class="mb-3">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control"  required id="namecity1" name="namecity1" min="3" max="50">
+                            <input type="text" class="form-control"  required id="namecity1" name="namecity1" minlength="3" maxlength="50">
                             <span id="error" class="error" aria-live="polite"></span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Description</label>
-                            <input type="text" class="form-control"  required id="description1" name="gdp1" min="2" max="50">
+                            <input type="text" class="form-control"  required id="description1" name="gdp1" minlength="2" maxlength="50">
                             <span id="error1" class="error" aria-live="polite"></span>
                         </div>
                         <div class="mb-3">
@@ -70,7 +70,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Population</label>
-                            <input type="number" class="form-control"  required id="population1" name="population1">
+                            <input type="number" class="form-control"  required id="population1" name="population1" min="1" >
                             <span id="error3" class="error" aria-live="polite"></span>
                         </div>
                         <div class="mb-3">
@@ -107,11 +107,11 @@
                         <form id="form1" novalidate>
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                <input type="text" class="form-control"  required id="namecity" name="namecity" min="2" max="500">
+                                <input type="text" class="form-control"  required id="namecity" name="namecity" minlength="5" maxlength="50">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Description</label>
-                                <input type="text" class="form-control"  required pattern="[a-zA-Z0-9]+" id="description" name="description" min="2" max="500">
+                                <input type="text" class="form-control"  required id="description" name="description">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">GDP</label>
